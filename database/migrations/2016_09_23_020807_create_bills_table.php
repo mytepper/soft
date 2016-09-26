@@ -11,18 +11,24 @@ class CreateBillsTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        //
-    }
+     public function up()
+     {
+         Schema::create('bills', function (Blueprint $table) {
+             $table->increments('id');
+             $table->integer('service_id');
+             $table->enum('status', ['Y', 'N']);
+             $table->dateTime('pay_date');
+             $table->timestamps();
+         });
+     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        //
-    }
+     /**
+      * Reverse the migrations.
+      *
+      * @return void
+      */
+     public function down()
+     {
+         Schema::drop('bills');
+     }
 }

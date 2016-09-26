@@ -11,18 +11,27 @@ class CreateServicesTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        //
-    }
+     public function up()
+     {
+         Schema::create('services', function (Blueprint $table) {
+             $table->increments('id');
+             $table->string('name');
+             $table->string('detail');
+             $table->enum('type', ['P', 'S']);
+             $table->string('customer_id');
+             $table->dateTime('next_pay_date');
+             $table->string('status');
+             $table->timestamps();
+         });
+     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        //
-    }
+     /**
+      * Reverse the migrations.
+      *
+      * @return void
+      */
+     public function down()
+     {
+         Schema::drop('services');
+     }
 }
